@@ -1,14 +1,50 @@
 <head>
-  <title>hello-world</title>
+  <title>Project 词表. Chinese word list creator.</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
-
-  {{> hello}}
+	<header>
+	  <div class="row">
+	  	<div class="col s4 header-col1">
+				<h3 class="header1">Project <span class="chinese-word">词表</span></h3>
+			</div>
+			<div class="col s8 header-col2">
+				<h3 class="header2">Generate your own word list</h3>
+			</div>
+		</div>
+	</header>
+  <main class="container">
+  	{{> hello}}
+  </main>
+  <footer class="page-footer">
+    <div class="footer-copyright">
+      <div class="container">
+		      <div class="left copyright-label">
+						© 2015 Georgy Copyright
+					</div>
+					<a class="grey-text text-lighten-4 right" href="https://github.com/petukhov/Project-CiBiao">Github</a>
+    	</div>
+    </div>
+  </footer>
 </body>
 
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+  <!--<button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>-->
+
+  <div class="row main-input">
+    <form class="col s12">
+      <div class="row">
+      	<div class="input-field col s1"></div>
+        <div class="input-field col s8">
+          <input placeholder="Paste in your link or text here" id="first_name" type="text">
+        </div>
+        <div class="input-field col s2">
+        	<button class="btn waves-effect waves-light go-button" type="submit" name="action">Go!</button>
+        </div>
+        <div class="input-field col s1"></div>
+      </div>
+    </form>
+  </div>
+
 </template>

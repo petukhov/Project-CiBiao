@@ -1,1 +1,77 @@
 /* CSS declarations go here */
+
+body {
+	display: flex;	
+	min-height: 100vh;
+	flex-direction: column;
+}
+
+main {
+	flex: 1 0 auto;
+}
+
+footer.page-footer {
+	padding-top: 0;
+	background-color: #6991AC;
+}
+
+.header1 {
+  margin-top: 0 !important;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  background-color: #C3D7DF;
+  font-weight: 100;
+  padding-right: 5px;
+  font-size: 3em;
+  font-style: italic;
+  color: #67727A;
+}
+.header2 {
+  color: #F5F5F5;
+  margin-top: 0 !important;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  background-color: #6991AC;
+  font-weight: 100;
+  padding-left: 5px;
+  font-size: 2.3em;
+  font-style: italic;
+}
+
+.header-col1 {
+	padding: 0 !important;
+	text-align: right;
+	padding-right: 5px;
+}
+.header-col2 {
+	padding: 0 !important;
+	text-align: left;
+	padding-left: 5px;
+	margin-top: 37px;;
+}
+
+.main-input {
+	margin-top: 90px;
+}
+
+.chinese-word {
+	font-style: normal;
+  font-weight: 900;
+}
+   
+.go-button {
+	background-color: #D75C37;
+}   
+
+.go-button:hover, .go-button:visited, .go-button:focus {
+	background-color: #67727A;
+}
+
+.copyright-label {
+	color: #F5F5F5;
+}
+
+.input-field input[type=text]:focus {
+ 	border-bottom: 1px solid #D75C37;
+ 	box-shadow: 0 1px 0 0 #D75C37;
+}
