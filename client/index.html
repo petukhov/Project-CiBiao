@@ -14,7 +14,7 @@
 		</div>
 	</header>
   <main class="container">
-  	{{> hello}}
+  	<div id="render-target"></div>
   </main>
   <footer class="page-footer">
     <div class="footer-copyright">
@@ -27,24 +27,3 @@
     </div>
   </footer>
 </body>
-
-<template name="hello">
-  <!--<button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>-->
-
-  <div class="row main-input">
-    <form class="col s12">
-      <div class="row">
-      	<div class="input-field col s1"></div>
-        <div class="input-field col s8">
-          <input placeholder="Paste in your link or text here" id="first_name" type="text">
-        </div>
-        <div class="input-field col s2">
-        	<button class="btn waves-effect waves-light go-button" type="submit" name="action">Go!</button>
-        </div>
-        <div class="input-field col s1"></div>
-      </div>
-    </form>
-  </div>
-
-</template>
