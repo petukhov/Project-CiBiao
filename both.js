@@ -7,15 +7,20 @@ Meteor.methods({processUrl: function (url) {
     	chineseRegex = /(?:[\u4E00-\u9FA5\uF900-\uFA2D]){1,1}/mg,
     	asciiRegex = /[\x00-\xFF]+/mg,
     	lineBreaksRegex = /(\r\n|\n|\r)/gm,
-    	result = new Set(),
+    	result = [],
     	oneChar;
     text = text.replace(lineBreaksRegex, '').replace(asciiRegex, '');
     while(oneChar = chineseRegex.exec(text)) {
-    	result.add(oneChar[0]);
+    	result.push(oneChar[0]);
     }
-    result = Array.from(result);
+    result = _.map(_.groupBy(result), function(value, key) {
+		return {
+			id: key,
+			count: value.length
+		}
+	});
     result.sort(function(a, b) {
-    	return a.localeCompare(b);
+   		return b.count > a.count;
     });
     return result;
   } catch (e) {
