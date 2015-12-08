@@ -19,9 +19,11 @@ Meteor.methods({processUrl: function (url) {
 			count: value.length
 		}
 	});
-    result.sort(function(a, b) {
-   		return b.count > a.count;
-    });
+	result = _.sortBy(result, "count");
+	result.reverse();
+    //result.sort(function(a, b) {
+   	//	return b.count > a.count;
+    //});
     return result;
   } catch (e) {
     return e;

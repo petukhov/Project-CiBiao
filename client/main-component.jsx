@@ -1,10 +1,16 @@
 Main = React.createClass({
 
+  getInitialState:function(){
+    return{
+      results: []
+    }
+  },
+
   handleSubmit(event) {
     event.preventDefault();
     
     var text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
-
+    var self = this;
     Meteor.call("processUrl", text, function(error, result) {
       if(error) {
         console.log(error);
@@ -13,25 +19,51 @@ Main = React.createClass({
       }
 
       //create a table of characters here. 
+      self.setState({
+        results: result
+      })
     });
   },
   
   render() {
     return (
-      <div className="row main-input">
-        <form className="col s12"  onSubmit={this.handleSubmit}>
-          <div className="row">
-            <div className="input-field col s1"></div>
-            <div className="input-field col s8">
-              <input ref="textInput" placeholder="Paste in your link or text here" id="first_name" type="text"/>
+      <div>
+        <div className="row main-input">
+          <form className="col s12"  onSubmit={this.handleSubmit}>
+            <div className="row">
+              <div className="input-field col s1"></div>
+              <div className="input-field col s8">
+                <input ref="textInput" placeholder="Paste in your link or text here" id="first_name" type="text"/>
+              </div>
+              <div className="input-field col s2">
+                <button className="btn waves-effect waves-light go-button" type="submit" name="action">Go!</button>
+              </div>
+              <div className="input-field col s1"></div>
             </div>
-            <div className="input-field col s2">
-              <button className="btn waves-effect waves-light go-button" type="submit" name="action">Go!</button>
-            </div>
-            <div className="input-field col s1"></div>
-          </div>
-        </form>
+          </form>
+        </div>
+        <ResultsTable data={this.state.results}/>
       </div>
+    );
+  }
+});
+
+ResultsTable = React.createClass({
+  render() {
+    var rows=[];
+    this.props.data.forEach(function(character) {
+      rows.push(<tr><td>{character.id}</td><td>{character.count}</td></tr>)
+    });
+    return(
+      <table>
+        <thead>
+          <tr>
+            <th>Character</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>{rows}</tbody>
+      </table>
     );
   }
 });
