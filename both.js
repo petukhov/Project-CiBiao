@@ -1,5 +1,4 @@
-// Define a collection to hold our tasks
-Db = new Mongo.Collection("db");
+ChinDict = new Mongo.Collection("chindict");
 
 Meteor.methods({processUrl: function (url) {
   try {
@@ -14,16 +13,17 @@ Meteor.methods({processUrl: function (url) {
     	result.push(oneChar[0]);
     }
     result = _.map(_.groupBy(result), function(value, key) {
+    	var d = ChinDict.findOne({simpl:key}).therest;
+    	console.log(d)
 		return {
 			id: key,
-			count: value.length
-		}
+			count: value.length,
+			def: d
+		};
 	});
 	result = _.sortBy(result, "count");
 	result.reverse();
-    //result.sort(function(a, b) {
-   	//	return b.count > a.count;
-    //});
+
     return result;
   } catch (e) {
     return e;

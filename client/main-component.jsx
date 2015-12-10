@@ -17,8 +17,6 @@ Main = React.createClass({
       } else {
         console.log(result);
       }
-
-      //create a table of characters here. 
       self.setState({
         results: result
       })
@@ -52,14 +50,15 @@ ResultsTable = React.createClass({
   render() {
     var rows=[];
     this.props.data.forEach(function(character) {
-      rows.push(<tr><td>{character.id}</td><td>{character.count}</td></tr>)
+      rows.push(<tr><td>{character.count}</td><td>{character.id}</td><td>{character.def}</td></tr>)
     });
     return(
       <table>
         <thead>
           <tr>
-            <th>Character</th>
             <th>Count</th>
+            <th>Character</th>
+            <th>Definition</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
