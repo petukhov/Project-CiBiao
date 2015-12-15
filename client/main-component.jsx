@@ -11,15 +11,21 @@ Main = React.createClass({
     
     var text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
     var self = this;
+
+    self.setState({
+      results: null
+    });
+
     Meteor.call("processUrl", text, function(error, result) {
       if(error) {
         console.log(error);
       } else {
         console.log(result);
       }
+
       self.setState({
         results: result
-      })
+      });
     });
   },
   
@@ -49,20 +55,24 @@ Main = React.createClass({
 ResultsTable = React.createClass({
   render() {
     var rows=[];
-    this.props.data.forEach(function(character) {
-      rows.push(<tr><td>{character.count}</td><td>{character.id}</td><td>{character.def}</td></tr>)
-    });
-    return(
-      <table>
-        <thead>
-          <tr>
-            <th>Count</th>
-            <th>Character</th>
-            <th>Definition</th>
-          </tr>
-        </thead>
-        <tbody>{rows}</tbody>
-      </table>
-    );
+    if(this.props.data) {
+      this.props.data.forEach(function(character) {
+        rows.push(<tr><td>{character.count}</td><td>{character.id}</td><td>{character.def}</td></tr>)
+      });
+      return(
+        <table>
+          <thead>
+            <tr>
+              <th>Count</th>
+              <th>Character</th>
+              <th>Definition</th>
+            </tr>
+          </thead>
+          <tbody>{rows}</tbody>
+        </table>
+      );
+    } else {
+      return(<p>loading...</p>);
+    }
   }
 });
