@@ -57,7 +57,7 @@ ResultsTable = React.createClass({
     var rows=[];
     if(this.props.data) {
       this.props.data.forEach(function(character) {
-        rows.push(<tr><td>{character.count}</td><td>{character.id}</td><td>{character.def}</td></tr>)
+        rows.push(<tr><td>{character.count}</td><td>{character.key}</td><td>{character.def}</td></tr>)
       });
       return(
         <table>
@@ -72,7 +72,7 @@ ResultsTable = React.createClass({
         </table>
       );
     } else {
-      return(<p>loading...</p>);
+      return(<div className="loader">Loading...</div>);
     }
   }
 });
