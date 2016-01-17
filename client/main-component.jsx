@@ -1,9 +1,9 @@
 Main = React.createClass({
 
-  getInitialState:function(){
+  getInitialState() {
     return{
       results: []
-    }
+    };
   },
 
   handleSubmit(event) {
@@ -16,7 +16,7 @@ Main = React.createClass({
       results: null
     });
 
-    Meteor.call("processUrl", text, function(error, result) {
+    Meteor.call("processUrl", text, (error, result) => {
       if(error) {
         console.log(error);
       } else {
@@ -50,13 +50,14 @@ Main = React.createClass({
       </div>
     );
   }
+
 });
 
 ResultsTable = React.createClass({
   render() {
     var rows=[];
     if(this.props.data) {
-      this.props.data.forEach(function(character) {
+      this.props.data.forEach((character) => {
         rows.push(<tr><td>{character.count}</td><td>{character.key}</td><td>{character.def}</td></tr>)
       });
       return(
